@@ -1,0 +1,130 @@
+@model List<prueba.Models.Alumno>
+@{
+   Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Papu</title>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+     <style>
+         body{
+             margin: 0;
+             padding: 0;
+             background: #D7D2D2;
+         }
+         #contTable {
+             margin: 20px 20px;
+             background: #FFF;
+             border: 1px solid #D7D2D2;
+             padding: 20px 20px;
+             border-radius: 20px;
+             box-sizing: border-box;
+         }
+         #contHeader{
+             width: 100%;
+            height: 60px;
+            background: #4F8DEA;
+            text-align: center;
+            padding-top: 30px;
+            font-size: 31px;
+         }
+         #contHeader span{
+             size: 20px;
+             color: #FFF;
+         }
+     </style>
+</head>
+<body>
+    @* <h1>
+        
+        @foreach (var alumno in Model)
+        {
+            <h4>@alumno.id_estudiante</h4>
+        }
+    </h1> *@
+
+    <div id="contHeader">
+        <span>Tabla Usuarios -> Kevin tu terror xdxd  </span>
+    </div>
+    <div id="contTable">
+         <table id="tablaAlumnos" 
+        class="table cell-border compact stripe" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                 <th style="width:10px">#</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Codigo</th>
+                <th>Correo 1</th>
+                <th>Correo 2</th>
+                <th>Telefono 1</th>
+                <th>Telefono 2</th>
+               
+            </tr>
+        </thead>
+    </table>
+
+    </div>
+   
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#tablaAlumnos').DataTable({
+                 "language":{
+                    "decimal":        "",
+                    "emptyTable":     "Ningun dato esta disponible en esta tabla",
+                    "info":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ entradas",
+                    "infoEmpty":      "Mostrando de 0 al 0 de un total de 0 entradas",
+                    "infoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Mostrar _MENU_ registros",
+                    "loadingRecords": "Cargando...",
+                    "processing":     "Procesando...",
+                    "search":         "Buscar:",
+                    "zeroRecords":    "No se encontraron resultados",
+                    "paginate": {
+                        "first":      "Primero",
+                        "last":       "Ultimo",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                "ajax":{
+                    "url": "/home/getAlumnos",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns" :[
+
+                    @* {"data" : "Nombres", "name": "nombres"}, *@
+                    {"data" : "id_estudiante"},
+                    {"data" : "nombres"},
+                    {"data" : "apellidos"},
+                    {"data" : "codigo"},
+                    {"data" : "correo"},
+                    {"data" : "correo2"},
+                    {"data" : "telefono1"},
+                    {"data" : "telefono2"},
+                ]
+            });
+        } );
+        console.log("hola");
+    </script>
+
+
+
+
+  
+</body>
+</html>
